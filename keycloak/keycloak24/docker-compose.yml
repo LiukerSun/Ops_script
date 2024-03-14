@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: ${POSTGRES_USER:-keycloak}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-eX4mP13p455w0Rd}
+    restart: always
+  keycloak:
+    image: keycloak/keycloak:24.0.1-0
+    command:
+      - start-dev
+    environment:
+      KC_LOG_LEVEL: error
+      KC_DB: postgres
+      KC_DB_URL: 'jdbc:postgresql://postgres/keycloak'
+      KC_DB_USERNAME: ${POSTGRES_USER:-keycloak}
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD:-eX4mP13p455w0Rd}
+      KC_DB_SCHEMA: public
+      KC_HOSTNAME: ${KC_HOSTNAME:-www.example.com}
+      KC_HOSTNAME_STRICT_HTTPS: true
+      KC_HOSTNAME_STRICT: true
+      KC_PROXY: edge
+      HTTP_ADDRESS_FORWARDING: true
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-eX4mP13p455w0Rd}
+    ports:
+      - 8081:8080
+    depends_on:
+      - postgres
+    restart: always
