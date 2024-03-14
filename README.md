@@ -1,2 +1,4 @@
-# ssl_script
-证书维护脚本。用于快速签发证书。
+# Ops_script
+一个Debian/Ubuntu运维脚本库
+个人使用。
+
