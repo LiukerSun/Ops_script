@@ -60,7 +60,9 @@ function set_cloudflare {
     read -p "Enter your Cloudflare API key: " CF_Key
     export CF_Email=${CF_Email}
     export CF_Key=${CF_Key}
-    echo "Cloudflare email and API key have been set."
+    echo "export CF_Email=${CF_Email}" >> ~/.bashrc
+    echo "export CF_Key=${CF_Key}" >> ~/.bashrc
+    echo "Cloudflare email and API key have been set and saved to ~/.bashrc."
 }
 
 # Alibaba setting
@@ -69,7 +71,9 @@ function set_alibaba {
     read -p "Enter your Alibaba Ali_Secret: " Ali_Secret
     export Ali_Key=${Ali_Key}
     export Ali_Secret=${Ali_Secret}
-    echo "Ali_Key and Ali_Secret have been set."
+    echo "export Ali_Key=${Ali_Key}" >> ~/.bashrc
+    echo "export Ali_Secret=${Ali_Secret}" >> ~/.bashrc
+    echo "Ali_Key and Ali_Secret have been set and saved to ~/.bashrc."
 }
 
 function create_domain_dir {
