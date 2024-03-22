@@ -94,7 +94,8 @@ function create_certificate {
     $HOME/.acme.sh/acme.sh --issue --dns $dns_provider -d "$domain" \
         --cert-file /etc/ssl/$domain/cert.pem \
         --key-file /etc/ssl/$domain/key.pem \
-        --fullchain-file /etc/ssl/$domain/fullchain.pem
+        --fullchain-file /etc/ssl/$domain/fullchain.pem \
+        --reloadcmd "systemctl force-reload nginx"
     return 0
 }
 
